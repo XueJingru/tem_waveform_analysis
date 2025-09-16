@@ -1,19 +1,15 @@
-"""
-自定义波形示例
-"""
+"""自定义波形示例."""
 
 import os
 import sys
-
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
-import os
 
 import numpy as np
 
 from waveform_analyzer import WaveformAnalyzer
 from waveform_generator import WaveformGenerator
 from waveform_visualizer import WaveformVisualizer
+
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 # 创建结果目录
 results_dir = "custom_waveform_results"
@@ -28,7 +24,7 @@ visualizer = WaveformVisualizer({"results_dir": results_dir})
 
 # 定义自定义波形函数
 def sawtooth_wave(t, width):
-    """锯齿波"""
+    """锯齿波."""
     wave = np.zeros_like(t)
     mask = (0 <= t) & (t <= width)
     wave[mask] = t[mask] / width
@@ -36,7 +32,7 @@ def sawtooth_wave(t, width):
 
 
 def chirp_wave(t, width):
-    """啁啾信号"""
+    """啁啾信号."""
     wave = np.zeros_like(t)
     mask = (0 <= t) & (t <= width)
     f0 = 10  # 起始频率

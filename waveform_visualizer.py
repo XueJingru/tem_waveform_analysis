@@ -1,3 +1,8 @@
+"""Waveform Visualizer module for TEM waveform analysis.
+
+This module provides functionality for waveform visualizer.
+"""
+
 import os
 
 import matplotlib.pyplot as plt
@@ -6,11 +11,11 @@ import pandas as pd
 
 
 class WaveformVisualizer:
-    """波形可视化器类，用于可视化和保存波形分析结果"""
+    """波形可视化器类，用于可视化和保存波形分析结果."""
 
     def __init__(self, config=None):
         """
-        初始化波形可视化器
+        初始化波形可视化器.
 
         参数:
         config (dict): 配置参数字典，可包含以下键:
@@ -55,7 +60,7 @@ class WaveformVisualizer:
 
     def plot_waveform(self, t, wave, width, title, filename, xlim=None, ylim=None):
         """
-        绘制单个波形
+        绘制单个波形.
 
         参数:
         t (ndarray): 时间向量
@@ -94,7 +99,7 @@ class WaveformVisualizer:
         self, freq, spectrum, title="Frequency Spectrum", filename="spectrum.png"
     ):
         """
-        绘制频谱图
+        绘制频谱图.
 
         Args:
             freq: 频率数组
@@ -140,7 +145,7 @@ class WaveformVisualizer:
         dominant_freq=None,  # 新增参数
     ):
         """
-        在一张图中绘制波形和频谱
+        在一张图中绘制波形和频谱.
 
         Args:
             t: 时间数组
@@ -189,15 +194,15 @@ class WaveformVisualizer:
             if len(freq_plot) > 0:
                 idx = np.abs(freq_plot - dominant_freq).argmin()
                 dom_freq_amp = spectrum_plot[idx]
-                
+
                 # 在频谱图中标出主频位置
                 axes[1].axvline(
-                    x=dominant_freq, 
-                    color="r", 
-                    linestyle="--", 
-                    label=f"Dominant Freq = {dominant_freq:.1f} Hz"
+                    x=dominant_freq,
+                    color="r",
+                    linestyle="--",
+                    label=f"Dominant Freq = {dominant_freq:.1f} Hz",
                 )
-                axes[1].plot(dominant_freq, dom_freq_amp, 'ro', markersize=6)
+                axes[1].plot(dominant_freq, dom_freq_amp, "ro", markersize=6)
                 axes[1].legend()
 
         # 设置x轴的范围和刻度
@@ -213,12 +218,11 @@ class WaveformVisualizer:
 
         return save_path
 
-
     def export_waveform_data(
         self, t, wave, freq, spectrum, filename_base="waveform_data"
     ):
         """
-        导出波形和频谱数据到CSV文件
+        导出波形和频谱数据到CSV文件.
 
         Args:
             t: 时间数组
@@ -257,7 +261,7 @@ class WaveformVisualizer:
         self, t, waves, widths, labels, title, filename, xlim=None, ylim=None
     ):
         """
-        绘制多个波形对比
+        绘制多个波形对比.
 
         参数:
         t (ndarray): 时间向量
@@ -310,7 +314,7 @@ class WaveformVisualizer:
         self, freq, spectra, labels, title, filename, xlim=None, ylim=None
     ):
         """
-        绘制多个频谱对比
+        绘制多个频谱对比.
 
         参数:
         freq (ndarray): 频率向量
@@ -358,7 +362,7 @@ class WaveformVisualizer:
 
     def generate_report(self, wave_info, filename="waveform_report.txt"):
         """
-        生成波形分析报告
+        生成波形分析报告.
 
         参数:
         wave_info (dict): 波形信息字典，包含以下键:
@@ -375,13 +379,13 @@ class WaveformVisualizer:
         report_path = os.path.join(self.config["results_dir"], filename)
 
         with open(report_path, "w") as f:
-            f.write(f"波形分析报告\n")
+            f.write("波形分析报告\n"[1:])
             f.write(f"{'='*50}\n\n")
 
             f.write(f"波形名称: {wave_info['name']}\n")
             f.write(f"波宽: {wave_info['width']*1e3:.2f} ms\n\n")
 
-            f.write(f"时域统计:\n")
+            f.write("时域统计:\n"[1:])
             f.write(f"  平均值: {wave_info['stats']['mean']:.6f}\n")
             f.write(f"  标准差: {wave_info['stats']['std']:.6f}\n")
             f.write(f"  最小值: {wave_info['stats']['min']:.6f}\n")
@@ -390,7 +394,7 @@ class WaveformVisualizer:
             f.write(f"  有效值: {wave_info['stats']['rms']:.6f}\n")
             f.write(f"  能量: {wave_info['stats']['energy']:.6f}\n\n")
 
-            f.write(f"频域分析:\n")
+            f.write("频域分析:\n"[1:])
             f.write(f"  主频: {wave_info['dominant_freq'][0]:.2f} Hz\n")
             f.write(f"  主频幅值: {wave_info['dominant_freq'][1]:.6f}\n")
 
@@ -401,7 +405,7 @@ class WaveformVisualizer:
                 f.write(f"    带宽: {wave_info['bandwidth'][2]:.2f} Hz\n\n")
 
             if "peaks" in wave_info:
-                f.write(f"多峰分析:\n")
+                f.write("多峰分析:\n"[1:])
                 for i, (freq, val) in enumerate(
                     zip(wave_info["peaks"][0], wave_info["peaks"][1])
                 ):

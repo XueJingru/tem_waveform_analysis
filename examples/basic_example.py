@@ -1,18 +1,15 @@
-"""
-基本用法示例
-"""
+"""基本用法示例."""
 
 import os
 import sys
-
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-import os
 
 import numpy as np
 
 from waveform_analyzer import WaveformAnalyzer
 from waveform_generator import WaveformGenerator
 from waveform_visualizer import WaveformVisualizer
+
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 # 创建结果目录
 results_dir = "basic_example_results"

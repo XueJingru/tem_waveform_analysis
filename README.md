@@ -13,7 +13,7 @@
 
 ```bash
 # 克隆仓库
-git clone https://github.com/yourusername/tem_waveform_analysis.git
+git clone https://github.com/XueJingru/tem_waveform_analysis.git
 cd tem_waveform_analysis
 
 # 安装依赖
